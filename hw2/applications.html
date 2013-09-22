@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web & Mobile Development</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="styles/layout.css" type="text/css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	 <script>
+	$(function() {
+		$( "#datepicker" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'mm/dd/yy',
+			yearRange: '1960:2013'
+		});
+		$( "button" )
+			.button()
+			.click(function( event ) {
+			event.preventDefault();
+		});
+		$( "#calculate" ).click(function() {
+			var birthday = $("#datepicker").val();
+			var name = $("#name").val();
+			$.ajax({
+             		type: "POST",
+             		url: "calculation.php",
+             		data: {"birthday":birthday, "name":name},
+             		success: function(result){
+                	  	$("#result1").html(result);
+              		}
+          		});   
+          	return false;
+		});
+		$("#b1").click(function(){
+			$("#lemon").replaceWith('<div id="lemon" class="one_third"><img src="images/lemonade.jpg" height="200" width="180"></div>');
+		});
+		$("#b2").click(function(){
+			$("#lemon").replaceWith('<div id="lemon"><img src="images/salt.jpg" height="200" width="180"></div>');
+		});
+		$("#b3").click(function(){
+			$("#lemon").replaceWith('<div id="lemon"><img src="images/lobster.jpg" height="200" width="180"></div>');
+		});
+	});
+
+</script>
+</head>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <hgroup>
+      <h1><a href="#">Web & Mobile Development</a></h1>
+      
+    </hgroup>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Applications</a></li>
+        <li><a href="about.html">About Me</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container" class="clear">
+    <!-- main content -->
+    <div id="homepage">
+
+      <section id="intro" class="last clear">
+
+              <h2>Age Calculation App</h2>
+              <p>Name: <input type="text" id="name"/></p>
+              <p>Birthday: <input type="text" id="datepicker" /></p>
+              <div id="result1">				</div>
+              <button id="calculate">Calculate</button>
+      </section>
+      <div id ="DOMmanipulation">
+    	<br><br>
+    	<h1>DOM Manipulation</h1>
+    	<br>
+    		<h6>When life gives you lemon...</h3><br>
+    		<button id="b1">Make Lemonade</button>
+    		<button id="b2">Ask 4 salt&tequila</button>
+    		<button id="b3">Buy a lobster</button>
+    		<br><br>
+    		<div id="lemon">	</div>
+    </div>
+      <!-- / Introduction -->
+    </div>
+    <!-- / content body -->
+  </div>
+</div>
+
+<!-- Copyright -->
+<div class="wrapper row4">
+  <footer id="copyright" class="clear">
+    <p class="fl_left">Copyright &copy; 2012 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+  </footer>
+</div>
+</body>
+</html>
